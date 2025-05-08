@@ -1,0 +1,313 @@
+/* Importação de fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700;900&display=swap');
+
+/* Definição de variáveis CSS para cores e temas */
+:root {
+  --neon-blue: #00f0ff;
+  --neon-pink: #ff00ff;
+  --dark-bg: #0a0a0a;
+  --text-light: #ffffff;
+  --text-glow: rgba(0, 238, 255, 0.288); /* Corrigido '0, 238, 255' para '0, 240, 255' para consistência, mas mantive o original pois pode ser intencional */
+}
+
+/* Reset básico de estilos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos globais para o corpo da página */
+body {
+  background: var(--dark-bg);
+  color: var(--text-light);
+  overflow-x: hidden; /* Evita scroll horizontal desnecessário */
+  min-height: 100vh; /* Garante que o corpo ocupe pelo menos toda a altura da viewport */
+  font-family: 'Orbitron', sans-serif; /* Fonte padrão */
+}
+
+/* Estilos para o canvas de background */
+canvas#bg {
+  position: fixed; /* Posição fixa para cobrir toda a tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Coloca o canvas atrás de outros elementos */
+  opacity: 0.6; /* Opacidade para efeito sutil */
+}
+
+/* ESTILOS DO CABEÇALHO */
+header {
+    display: flex; /* Layout flexível para alinhar itens */
+    justify-content: space-between; /* Espaça o título e a navegação */
+    align-items: center; /* Centraliza verticalmente os itens */
+    padding: 1.5rem 5%; /* Espaçamento interno */
+    position: fixed; /* Cabeçalho fixo no topo */
+    width: 100%;
+    background: rgba(10, 10, 10, 0.9); /* Fundo semi-transparente */
+    backdrop-filter: blur(8px); /* Efeito de desfoque no fundo */
+    z-index: 100; /* Garante que o cabeçalho fique sobre outros elementos */
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2); /* Linha sutil na parte inferior */
+}
+
+/* ESTILOS DO TÍTULO PRINCIPAL */
+.main-title {
+    font-family: 'Audiowide', cursive; /* Fonte específica para o título */
+    font-size: clamp(2.5rem, 8vw, 5rem); /* Tamanho de fonte responsivo */
+    letter-spacing: 4px; /* Espaçamento entre letras */
+    text-transform: uppercase; /* Texto em maiúsculas */
+    color: var(--neon-blue); /* Cor neon azul */
+    text-shadow: /* Efeito de brilho neon */
+        0 0 5px #fff,
+        0 0 10px var(--neon-blue),
+        0 0 20px var(--neon-blue),
+        0 0 40px var(--neon-blue);
+    margin: 0;
+    line-height: 1; /* Altura da linha compacta */
+    position: relative; /* Necessário para z-index */
+    z-index: 110; /* Garante que o título fique sobre outros elementos do header */
+}
+
+/* ESTILOS DOS TÍTULOS DE SEÇÃO */
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900; /* Peso da fonte */
+    font-size: clamp(2rem, 6vw, 4rem); /* Tamanho de fonte responsivo */
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin: 2rem 0; /* Margem superior e inferior */
+    position: relative;
+    z-index: 10;
+    text-shadow: /* Efeito de brilho sutil */
+        0 0 5px #973b3b, /* Corrigido para um tom mais escuro, pode ser ajustado */
+        0 0 10px var(--neon-pink);
+    text-align: center; /* Centraliza o texto */
+    animation: fade-in 2s ease-in-out; /* Animação de entrada */
+}
+
+/* Linha decorativa abaixo do título da seção */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Posição abaixo do texto */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza a linha */
+    width: 80%; /* Largura da linha */
+    height: 3px; /* Altura da linha */
+    background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-pink), transparent); /* Gradiente de cores */
+}
+
+/* ANIMAÇÕES */
+@keyframes fade-in { /* Animação de fade-in */
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Começa levemente abaixo e transparente */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina na posição normal e opaco */
+    }
+}
+
+/* SEÇÕES DE CONTEÚDO */
+.content-section {
+    min-height: 100vh; /* Altura mínima para preencher a tela */
+    padding: 10rem 5% 5rem; /* Espaçamento interno (ajustado para considerar o header fixo) */
+    position: relative;
+    z-index: 10; /* Garante que o conteúdo fique acima do background */
+    display: flex;
+    flex-direction: column; /* Organiza o conteúdo em coluna */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+}
+
+/* ESTILOS RESTANTES */
+
+/* Estilos da navegação */
+nav a {
+  color: var(--text-light);
+  text-decoration: none; /* Remove sublinhado padrão */
+  margin: 0 1rem; /* Espaçamento entre os links */
+  font-size: 1.1rem;
+  transition: all 0.3s; /* Transição suave para hover */
+  position: relative; /* Para o pseudo-elemento ::after */
+}
+
+nav a:hover {
+  color: var(--neon-blue); /* Muda a cor no hover */
+}
+
+/* Efeito de sublinhado animado nos links da navegação */
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0; /* Começa com largura zero */
+  height: 2px;
+  background: var(--neon-blue);
+  transition: width 0.3s; /* Anima a largura */
+}
+
+nav a:hover::after {
+  width: 100%; /* Expande a largura no hover */
+}
+
+/* Estilos da lista de habilidades */
+.skills {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+  gap: 1rem; /* Espaçamento entre os itens */
+  justify-content: center; /* Centraliza os itens */
+  max-width: 100%; /* Garante que não ultrapasse a largura do contêiner */
+  padding: 2rem;
+  overflow-x: auto; /* Permite scroll horizontal se necessário em telas menores */
+}
+
+.skills li {
+  background: rgba(0, 240, 255, 0.1); /* Fundo semi-transparente */
+  padding: 0.5rem 1.5rem; /* Espaçamento interno */
+  border-radius: 20px; /* Bordas arredondadas */
+  list-style: none; /* Remove marcadores de lista */
+  border: 1px solid rgba(0, 240, 255, 0.3); /* Borda sutil */
+  transition: all 0.3s;
+  flex: 0 0 auto; /* Não cresce nem encolhe, tamanho baseado no conteúdo */
+  color: var(--text-light);
+  text-align: center;
+  font-size: 1rem;
+  white-space: nowrap; /* Evita quebra de linha no texto */
+  animation: alternate-blink 6s infinite, text-glow 2s infinite alternate; /* Animações de brilho e piscar */
+  box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue); /* Sombra para efeito neon */
+}
+
+/* Animação de piscar alternado para as habilidades */
+@keyframes alternate-blink {
+  0%, 50%, 100% { /* Mantido o original, mas 50% é redundante se o efeito é simétrico */
+    opacity: 1;
+    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
+  }
+  25%, 75% {
+    opacity: 0.5;
+    box-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 15px var(--neon-pink);
+  }
+}
+
+/* Animação de brilho do texto */
+/* Havia uma duplicata desta animação, removi uma. */
+@keyframes text-glow {
+  0% {
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+  }
+  100% {
+    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+  }
+}
+
+.skills li:hover {
+  transform: translateY(-3px); /* Efeito de levantar no hover */
+  background: rgba(0, 240, 255, 0.2); /* Aumenta a opacidade do fundo */
+  /* A animação glow-pulse não está definida, você pode querer defini-la ou remover */
+  /* animation: glow-pulse 1s infinite alternate; */
+  box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue); /* Intensifica a sombra */
+  border-color: var(--neon-blue); /* Muda a cor da borda */
+}
+
+/* Estilos do carrossel de projetos */
+.carousel {
+  display: flex;
+  gap: 2rem; /* Espaçamento entre os cartões */
+  padding: 2rem 0; /* Espaçamento vertical */
+  width: 100%; /* Ocupa toda a largura disponível */
+  overflow-x: auto; /* Permite scroll horizontal */
+  scroll-snap-type: x mandatory; /* Efeito de "snap" ao scrollar horizontalmente */
+}
+
+/* Estilos dos cartões de projeto */
+.project-card {
+  scroll-snap-align: start; /* Alinha o início do cartão com o viewport durante o snap */
+  min-width: 300px; /* Largura mínima do cartão */
+  background: rgba(255, 255, 255, 0.05); /* Fundo sutil */
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+  border: 1px solid rgba(0, 240, 255, 0.1); /* Borda sutil */
+}
+
+.project-card:hover {
+  transform: translateY(-10px); /* Efeito de levantar no hover */
+  box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2); /* Sombra mais pronunciada */
+}
+
+/* Estilos da imagem do projeto */
+.project-image {
+  width: 100%;
+  height: 200px;
+  background: #222; /* Cor de fallback caso o shader não carregue */
+  border-radius: 8px;
+  margin-bottom: 1rem; /* Espaçamento abaixo da imagem */
+  overflow: hidden; /* Garante que o conteúdo do shader não transborde */
+}
+
+/* Estilos dos links de redes sociais */
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 1.5rem 0;
+}
+
+.social-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-blue); /* Efeito de brilho no hover */
+}
+
+/* Estilos do botão de copiar e-mail */
+.copy-email {
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink)); /* Gradiente de fundo */
+  border: none; /* Remove borda padrão */
+  padding: 0.8rem 2rem;
+  border-radius: 30px; /* Bordas bem arredondadas */
+  color: #000; /* Cor do texto */
+  font-weight: bold;
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: all 0.3s;
+  margin-top: 1rem;
+}
+
+.copy-email:hover {
+  transform: scale(1.05); /* Efeito de zoom no hover */
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5); /* Sombra no hover */
+}
+
+/* AJUSTES RESPONSIVOS */
+@media (max-width: 768px) { /* Estilos para telas menores (tablets e celulares) */
+  header {
+    flex-direction: column; /* Empilha os elementos do cabeçalho */
+    gap: 1rem; /* Espaçamento entre os elementos empilhados */
+    padding: 1rem;
+  }
+
+  .main-title {
+    font-size: 2.5rem; /* Tamanho de fonte menor para o título */
+  }
+
+  .content-section {
+    padding: 8rem 5% 3rem; /* Ajusta o padding das seções */
+  }
+
+  .carousel {
+    flex-direction: column; /* Empilha os cartões do carrossel */
+  }
+
+  .project-card {
+    min-width: 100%; /* Cartões ocupam toda a largura */
+  }
+}

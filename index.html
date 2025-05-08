@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Futurista</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+
+    <header>
+        <h1 class="main-title">MARCIO-MAKER</h1>
+        <nav>
+            <a href="#about">Sobre</a>
+            <a href="#projects">Projetos</a>
+            <a href="#contact">Contato</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="content-section">
+            <h2 class="section-title">SOBRE MIM</h2>
+            <p>Sou um desenvolvedor Full Stack apaixonado por criar experiências digitais inovadoras...</p>
+            <ul class="skills">
+                <li>HTML/CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Python</li>
+                <li>Node.js</li>
+                <li>Three.js</li>
+                <li>UI/UX Design</li>
+                <li>Figma</li>
+                <li>Prototyping</li>
+            </ul>
+        </section>
+
+        <section id="projects" class="content-section">
+            <h2 class="section-title">MEUS PROJETOS</h2>
+            <div class="carousel">
+                <div class="project-card">
+                    <div class="project-image" data-shader="distort"></div>
+                    <h3>Nebula</h3>
+                    <p>Site interativo com visualizações 3D de galáxias</p>
+                    <a href="#" target="_blank">Ver Projeto</a>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" data-shader="distort"></div>
+                    <h3>TaskFlow</h3>
+                    <p>Aplicação de produtividade com Flask e React</p>
+                    <a href="#" target="_blank">Ver Projeto</a>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" data-shader="distort"></div>
+                    <h3>VisionUI</h3>
+                    <p>Sistema de design UI/UX criado no Figma</p>
+                    <a href="#" target="_blank">Ver Projeto</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h2 class="section-title">CONTATO</h2>
+            <p>Quer colaborar ou discutir oportunidades?</p>
+            <ul class="social-links">
+                <li><a href="#" target="_blank">LinkedIn</a></li>
+                <li><a href="#" target="_blank">GitHub</a></li>
+                <li><a href="mailto:seu@email.com">seu@email.com</a></li>
+            </ul>
+            <button class="copy-email">Copiar E-mail</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
